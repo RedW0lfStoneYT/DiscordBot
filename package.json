@@ -1,0 +1,14 @@
+{
+  "name": "ultrareport",
+  "version": "1.0.0",
+  "description": "allows players to report others with this bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RedW0lfStone",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
