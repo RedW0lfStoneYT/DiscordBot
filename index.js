@@ -2,18 +2,25 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 
-const bot = new Discord.Client({disableEveryone: true});
+const bot = new Discord.Client();
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
   bot.user.setActivity("over the server", {type: "WATCHING"});
 
 });
-
+bot.on("guildMemberAdd", member => {
+  console.log(`${member.id} just joined the server`);
+  member.guild.channels.find("name", "welcome").send(`**Welcome To The Server ${member}**`);
+});
 
 bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
+
+
+
+
 
   let prefix = botconfig.prefix;
   let messageArray = message.content.split(" ");
@@ -21,6 +28,7 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
 
 
+if(cmd == `${prefix}test`)return  message.channel.send("test sucessful!");
 
   if(cmd ===`${prefix}info`){
     let sicon = message.guild.displayAvatarURL;
@@ -240,17 +248,17 @@ bot.on("message", async message => {
 
     return message.channel.send(replies[ans]);
   }
-  if(cmd === `#metalisbad`){
-    let replies = ["No #Metal-for-days.", "WHYYYY!", `-warn ${message.author} GRRRR!`, "Yo RedW0lfStoneYT this person is being a bully.", "I understand you have your opinion but please dont let RedW0lfStoneYT know about this."];
-    let ans = Math.floor((Math.random() * replies.length));
-    console.log(`${message.author.id} said metal is bad DDOS NOW!`)
-    let agree = new Discord.RichEmbed()
-    .setColor("#88695")
-    .addField(`${message.author}`)
-    .addField("all i have to say is...", replies[ans]);
-
-    return message.channel.send(replies[ans]);
-  }
+  // if(cmd === `#metalisbad`){
+  //   let replies = ["No #Metal-for-days.", "WHYYYY!", `-warn ${message.author} GRRRR!`, "Yo RedW0lfStoneYT this person is being a bully.", "I understand you have your opinion but please dont let RedW0lfStoneYT know about this."];
+  //   let ans = Math.floor((Math.random() * replies.length));
+  //   console.log(`${message.author.id} said metal is bad DDOS NOW!`)
+  //   let agree = new Discord.RichEmbed()
+  //   .setColor("#88695")
+  //   .addField(`${message.author}`)
+  //   .addField("all i have to say is...", replies[ans]);
+  //
+  //   return message.channel.send(replies[ans]);
+  // }
   bot.on('guildMemberAdd', member => {
     member.guild.channels.get('channelID').send("Welcome");
   });
