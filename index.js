@@ -28,7 +28,7 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
 
 
-if(cmd == `${prefix}test`)return  message.channel.send("test sucessful!");
+
 
   if(cmd ===`${prefix}info`){
     let sicon = message.guild.displayAvatarURL;
@@ -189,6 +189,9 @@ if(cmd == `${prefix}test`)return  message.channel.send("test sucessful!");
     console.log(`${message.author.username} has just used -report`)
     console.log(`${message.author.username} has just failed to ues used -report`.red)
     return;
+  }
+  if(cmd == `${prefix}test`){
+    message.channel.send("test sucessful!");
   }
     if(cmd === `${prefix}helpreport`) {
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
